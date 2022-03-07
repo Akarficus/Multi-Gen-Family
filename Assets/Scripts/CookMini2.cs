@@ -55,16 +55,16 @@ public class CookMini2 : MonoBehaviour
 
     // This method is called from CookLineHit()
     public static void spawnFoodAndCheck() {
-        if(ready) {
+        if( ready ) {
             ready = false;
         // check food count before spawning another
-        for(int x = lines.Count-1; x >= 0; x--) {
+        for( int x = lines.Count-1; x >= 0; x-- ) {
             Destroy(lines[x].gameObject);
             lines.RemoveAt(x);
         }
         Destroy(instance.currentFood);
         instance.foodCountSoFar++;
-        if(instance.foodCountSoFar == instance.foodCount) {
+        if( instance.foodCountSoFar == instance.foodCount ) {
             // End minigame. You've successfuly cut and managed the burners.
             GameManager.instance.MinigameCompleted();
         GameManager1.completed("minigame2");
@@ -89,7 +89,8 @@ public class CookMini2 : MonoBehaviour
     void spawnFood() {
         currentFood = GameObject.Instantiate(foodList[Random.Range(0,foodList.Length)], foodSpawnLocation.position, Quaternion.identity);
         for(int x = 0; x < Random.Range(4,20); x++)
-            lines.Add(GameObject.Instantiate(line,foodSpawnLocation.position + new Vector3(0f,Random.Range(currentFood.transform.position.y-currentFood.GetComponent<RectTransform>().rect.height/4,currentFood.transform.position.y+currentFood.GetComponent<RectTransform>().rect.height/4),0f),Quaternion.identity).GetComponent<CookLineHit>());
+            lines.Add(GameObject.Instantiate(line,foodSpawnLocation.position +
+                new Vector3(0f,Random.Range(currentFood.transform.position.y-currentFood.GetComponent<RectTransform>().rect.height/4,currentFood.transform.position.y+currentFood.GetComponent<RectTransform>().rect.height/4),0f),Quaternion.identity).GetComponent<CookLineHit>());
     }
 
     // Update is called once per frame
@@ -97,18 +98,18 @@ public class CookMini2 : MonoBehaviour
     {
         // CHOPPING MINI-MINI GAME
 
-        if(direction) {
+        if( direction ) {
         indicator.transform.position += new Vector3(0.0f, 0.1f, 0.0f);
         }
         else {
         indicator.transform.position -= new Vector3(0.0f, 0.1f, 0.0f);
         }
 
-        if(indicator.transform.position.y > 3.5f) {
+        if( indicator.transform.position.y > 3.5f ) {
             direction = false;
             CookMini2.ready = true;
         }
-        else if(indicator.transform.position.y < -3.5f) {
+        else if( indicator.transform.position.y < -3.5f ) {
             direction = true;
             CookMini2.ready = true;
         }

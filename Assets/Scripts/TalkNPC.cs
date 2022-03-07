@@ -32,7 +32,7 @@ public class TalkNPC : MonoBehaviour
 
     void OnTriggerStay2D(Collider2D other) {
         if(other.tag == "Player") {
-        Debug.Log("Still in grammys collider");
+        //Debug.Log("Still in grammys collider");
         if (Input.GetKey("space")) {
             interactText.gameObject.SetActive(false);
                 // Integrate INK here----
